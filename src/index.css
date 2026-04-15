@@ -1,0 +1,314 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Space+Mono:wght@400;700&display=swap');
+
+/* ─────────────────────────────────────────
+   NIGHT MARKET — DESIGN TOKENS
+───────────────────────────────────────── */
+:root {
+  /* Base palette */
+  --black:        #080808;
+  --surface:      #111111;
+  --surface-2:    #1a1a1a;
+  --border:       rgba(255, 255, 255, 0.06);
+  --border-light: rgba(255, 255, 255, 0.10);
+
+  /* Text */
+  --white:        #F0EDE8;
+  --muted:        #666666;
+  --subtle:       #3a3a3a;
+
+  /* Product accents */
+  --focus:        #D4E84A;   /* electric yuzu */
+  --focus-rgb:    212, 232, 74;
+  --body:         #C6733A;   /* copper */
+  --body-rgb:     198, 115, 58;
+  --cycle:        #F23B6F;   /* neon rose */
+  --cycle-rgb:    242, 59, 111;
+  --daily:        #4ECDC4;   /* arctic mint */
+  --daily-rgb:    78, 205, 196;
+
+  /* Page tint (updated by JS) */
+  --tint-r: 212;
+  --tint-g: 232;
+  --tint-b: 74;
+  --tint-opacity: 0;
+
+  /* Typography */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body:    'DM Sans', sans-serif;
+  --font-mono:    'Space Mono', monospace;
+
+  /* Radius */
+  --r-sm:   6px;
+  --r-md:   12px;
+  --r-lg:   20px;
+  --r-pill: 999px;
+}
+
+/* ─────────────────────────────────────────
+   BASE RESET
+───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: auto; /* Lenis handles smooth scroll */
+}
+
+body {
+  background-color: var(--black);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  overflow-x: hidden;
+  cursor: none; /* Custom cursor */
+}
+
+/* Restore cursor on interactive elements for fallback */
+a, button, input, select { cursor: none; }
+
+::selection {
+  background: var(--focus);
+  color: var(--black);
+}
+
+
+/* ─────────────────────────────────────────
+   TYPOGRAPHY SCALE
+───────────────────────────────────────── */
+.display-xl {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 10vw, 11rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+}
+
+.display-lg {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 7vw, 8rem);
+  font-weight: 700;
+  line-height: 0.94;
+  letter-spacing: -0.02em;
+}
+
+.display-md {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 4.5rem);
+  font-weight: 600;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.body-lg { font-size: 1.125rem; line-height: 1.7; color: var(--muted); }
+.body-sm { font-size: 0.875rem; line-height: 1.6; color: var(--muted); }
+
+/* ─────────────────────────────────────────
+   LAYOUT UTILITIES
+───────────────────────────────────────── */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(1.5rem, 5vw, 5rem);
+}
+
+.section { padding: clamp(5rem, 12vh, 10rem) 0; }
+
+/* ─────────────────────────────────────────
+   SURFACE / CARD COMPONENTS
+───────────────────────────────────────── */
+.surface {
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.surface-2 {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+
+.glass {
+  background: rgba(8, 8, 8, 0.80);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ─────────────────────────────────────────
+   BUTTONS
+───────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--r-pill);
+  background: var(--white);
+  color: var(--black);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.01em;
+  transition: transform 0.2s ease, background 0.2s ease;
+  border: none;
+  text-decoration: none;
+}
+.btn-primary:hover { transform: translateY(-1px); background: #e0ddd8; }
+.btn-primary:active { transform: translateY(0); }
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  border-radius: var(--r-pill);
+  background: transparent;
+  color: var(--white);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.01em;
+  transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  border: 1px solid rgba(255,255,255,0.2);
+  text-decoration: none;
+}
+.btn-outline:hover { border-color: rgba(255,255,255,0.5); transform: translateY(-1px); }
+
+/* ─────────────────────────────────────────
+   DIVIDERS
+───────────────────────────────────────── */
+.rule { width: 100%; height: 1px; background: var(--border); }
+
+/* ─────────────────────────────────────────
+   PRODUCT ACCENT HELPERS
+───────────────────────────────────────── */
+.accent-focus  { color: var(--focus); }
+.accent-body   { color: var(--body); }
+.accent-cycle  { color: var(--cycle); }
+.accent-daily  { color: var(--daily); }
+
+.bg-focus  { background: var(--focus); }
+.bg-body   { background: var(--body); }
+.bg-cycle  { background: var(--cycle); }
+.bg-daily  { background: var(--daily); }
+
+/* ─────────────────────────────────────────
+   TICKER / MARQUEE
+───────────────────────────────────────── */
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.ticker-track { animation: ticker 18s linear infinite; }
+.ticker-track:hover { animation-play-state: paused; }
+
+/* ─────────────────────────────────────────
+   SCROLL REVEAL BASE STATES
+───────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+/* ─────────────────────────────────────────
+   CUSTOM CURSOR (SVG drop — styles are inline in Cursor.tsx)
+───────────────────────────────────────── */
+
+/* ─────────────────────────────────────────
+   INGREDIENT CRAWL
+───────────────────────────────────────── */
+@keyframes crawl {
+  0%   { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+.crawl-track { animation: crawl 20s linear infinite; }
+.crawl-track:hover { animation-play-state: paused; }
+
+/* ─────────────────────────────────────────
+   DROP SPLASH ANIMATION
+───────────────────────────────────────── */
+@keyframes dropFall {
+  0%   { transform: translateY(-60px) scaleY(1.2); opacity: 0; }
+  60%  { transform: translateY(0)     scaleY(0.7); opacity: 1; }
+  75%  { transform: translateY(-6px)  scaleY(1.1); opacity: 1; }
+  90%  { transform: translateY(0)     scaleY(0.95); opacity: 1; }
+  100% { transform: translateY(0)     scaleY(1);   opacity: 1; }
+}
+@keyframes ripple {
+  0%   { transform: scale(0); opacity: 0.5; }
+  100% { transform: scale(4); opacity: 0; }
+}
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─────────────────────────────────────────
+   SCROLLBAR
+───────────────────────────────────────── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--black); }
+::-webkit-scrollbar-thumb { background: var(--subtle); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+/* ─────────────────────────────────────────
+   PRODUCT NAME SWAP ANIMATION
+───────────────────────────────────────── */
+@keyframes fadeSwap {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.product-name-enter {
+  animation: fadeSwap 0.35s ease forwards;
+}
+
+/* ─────────────────────────────────────────
+   MOBILE RESPONSIVE
+───────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* Product showcase stacks vertically on mobile */
+  [data-product] {
+    grid-template-columns: 1fr !important;
+    overflow-y: auto !important;
+  }
+
+  /* About section stacks */
+  #about .container > div {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Footer stacks */
+  footer .container > div:first-child {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Science cards: 2-col on mobile instead of 4 */
+  #science .container > div:last-child > div {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
