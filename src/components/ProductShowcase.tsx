@@ -17,6 +17,7 @@ function IngredientCrawl({ ingredients }: { ingredients: typeof products[0]['ing
   const items = [...ingredients, ...ingredients, ...ingredients, ...ingredients];
   return (
     <div
+      className="ingredient-container"
       style={{
         height: '260px',
         overflow: 'hidden',
@@ -129,6 +130,7 @@ export default function ProductShowcase() {
       >
         {/* LEFT — Product identity */}
         <div
+          className="product-left"
           style={{
             padding: 'clamp(3rem, 8vh, 6rem) clamp(1.5rem, 5vw, 5rem)',
             display: 'flex',
@@ -250,6 +252,7 @@ export default function ProductShowcase() {
 
         {/* RIGHT — Ingredients + nav */}
         <div
+          className="product-right"
           style={{
             padding: 'clamp(3rem, 8vh, 6rem) clamp(1.5rem, 5vw, 5rem)',
             display: 'flex',
