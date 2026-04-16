@@ -291,51 +291,6 @@ a, button, input, select { cursor: none; }
    MOBILE RESPONSIVE
 ───────────────────────────────────────── */
 @media (max-width: 768px) {
-  /* Product showcase stacks vertically on mobile but STAYS within 100vh to avoid ScrollTrigger lag */
-  [data-product] {
-    grid-template-columns: 1fr !important;
-    grid-template-rows: 1fr auto !important;
-    align-items: flex-start !important;
-    overflow-y: hidden !important; /* CRITICAL: Prevent double scrollbar fight with GSAP */
-  }
-
-  .product-left {
-    border-right: none !important;
-    padding: clamp(6rem, 12vh, 8rem) 1.5rem 0rem !important; /* Push down to clear mobile navbar */
-    justify-content: flex-start !important;
-  }
-  
-  .product-left .display-xl {
-    font-size: clamp(4rem, 18vw, 6rem) !important;
-    margin-bottom: 0.5rem !important;
-  }
-  
-  .product-left p {
-    font-size: 0.9rem !important;
-    line-height: 1.4 !important;
-    margin-bottom: 1.5rem !important;
-  }
-
-  .product-right {
-    padding: 1rem 1.5rem 2.5rem !important;
-    gap: 1.5rem !important;
-    justify-content: flex-end !important;
-    border-top: 1px solid var(--border-light);
-  }
-
-  /* Hide the long description paragraph on mobile to save vertical space inside the 100vh scrub view */
-  .product-right > div:first-child p {
-    display: none !important;
-  }
-  
-  .product-right .label {
-    margin-bottom: 0.5rem !important;
-  }
-
-  .ingredient-container {
-    height: 120px !important; /* Shorter crawl window on mobile */
-  }
-
   /* About section stacks */
   #about .container > div {
     grid-template-columns: 1fr !important;
